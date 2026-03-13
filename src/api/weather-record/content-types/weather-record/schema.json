@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "weather_records",
+  "info": {
+    "singularName": "weather-record",
+    "pluralName": "weather-records",
+    "displayName": "Weather Record"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "location": {
+      "type": "string",
+      "required": true
+    },
+    "temperature": {
+      "type": "decimal"
+    },
+    "condition": {
+      "type": "string"
+    },
+    "humidity": {
+      "type": "decimal"
+    },
+    "windSpeed": {
+      "type": "integer"
+    },
+    "fetchedAt": {
+      "type": "datetime"
+    }
+  }
+}
