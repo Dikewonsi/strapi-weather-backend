@@ -8,11 +8,11 @@ export default {
     routes: [
         {
             method: 'GET',
-            path: '/weather',
-            handler: 'weather.findByLocation',
+            path: '/weather/fetch',
+            handler: 'weather.fetchWeather',
             config: {
-                auth:false,
+                auth: false,
             },
-        },
+        }
     ],
 };
