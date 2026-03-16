@@ -18,6 +18,9 @@
     "temperature": {
       "type": "decimal"
     },
+    "condition": {
+      "type": "string"
+    },
     "humidity": {
       "type": "integer"
     },
