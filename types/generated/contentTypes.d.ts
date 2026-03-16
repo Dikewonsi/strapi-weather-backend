@@ -467,28 +467,26 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiWeatherRecordWeatherRecord
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'weather_records';
+export interface ApiWeatherWeather extends Struct.CollectionTypeSchema {
+  collectionName: 'weathers';
   info: {
-    displayName: 'Weather Record';
-    pluralName: 'weather-records';
-    singularName: 'weather-record';
+    displayName: 'Weather';
+    pluralName: 'weathers';
+    singularName: 'weather';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    condition: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     fetchedAt: Schema.Attribute.DateTime;
-    humidity: Schema.Attribute.Decimal;
+    humidity: Schema.Attribute.Integer;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::weather-record.weather-record'
+      'api::weather.weather'
     > &
       Schema.Attribute.Private;
     location: Schema.Attribute.String & Schema.Attribute.Required;
@@ -497,7 +495,7 @@ export interface ApiWeatherRecordWeatherRecord
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    windSpeed: Schema.Attribute.Integer;
+    windSpeed: Schema.Attribute.Decimal;
   };
 }
 
@@ -1013,7 +1011,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::weather-record.weather-record': ApiWeatherRecordWeatherRecord;
+      'api::weather.weather': ApiWeatherWeather;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "weather_records",
+  "collectionName": "weathers",
   "info": {
-    "singularName": "weather-record",
-    "pluralName": "weather-records",
-    "displayName": "Weather Record"
+    "singularName": "weather",
+    "pluralName": "weathers",
+    "displayName": "Weather"
   },
   "options": {
     "draftAndPublish": true
@@ -18,14 +18,11 @@
     "temperature": {
       "type": "decimal"
     },
-    "condition": {
-      "type": "string"
-    },
     "humidity": {
-      "type": "decimal"
+      "type": "integer"
     },
     "windSpeed": {
-      "type": "integer"
+      "type": "decimal"
     },
     "fetchedAt": {
       "type": "datetime"
