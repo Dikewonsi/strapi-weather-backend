@@ -4,4 +4,15 @@
 
 import { factories } from '@strapi/strapi';
 
-export default factories.createCoreRouter('api::weather.weather');
+export default {
+    routes: [
+        {
+            method: 'GET',
+            path: '/weather',
+            handler: 'weather.findByLocation',
+            config: {
+                auth:false,
+            },
+        },
+    ],
+};
