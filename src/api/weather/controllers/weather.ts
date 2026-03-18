@@ -57,21 +57,26 @@ export default {
     for (let i = 0; i < 2; i++) {
         try {
             const res = await fetch(url);
-
-            // Throw 400 validataionError
-            if (!res.ok) throw new Error(`Status ${res.status}`); 
-
-            // Convert response to JSON
             apiResponse = await res.json();
-            break; // success
-            } catch (err) {
-                // Log error which usually shows in terminal on dev, but on prod it is located in stdOut
-                 strapi.log.error(`Attempt ${i + 1} - Weather fetch failed:`, err);
 
-                if (i === 1) {
-                // Only return 500 after last attempt
-                return ctx.internalServerError('Failed to fetch weather data');
-                }
+            // Location not found (client error)
+            if(res.status === 404 || apiResponse?.cod === '404') {
+                return ctx.notFound({
+                    Error: 'Location not found',
+                    message: `No weather data available for ${location}`,
+                });
+            }
+
+            // Other OpenWeatherMap API erros
+            if(!res.ok) {
+                return ctx.badRequest({
+                    Error: 'Weather API Error',
+                    message: apiResponse?.message || 'Invalid request to weather service',
+                });
+            }
+        } catch (err) {
+            strapi.log.error('Weather fetch failed:', err);
+            return ctx.internalServerError('Failed to fetch weather data');
         }
     }
     
